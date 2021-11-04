@@ -12,7 +12,8 @@ namespace ShoppingList
             var shoppingList = new List<string>();
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("Welcome To your shopping list. Type in the item name or press the 'Enter' key to finish");
+            Console.WriteLine("Welcome To your shopping list.");
+            Console.WriteLine("Type in the item name or press the 'Enter' key to finish");
             Console.ForegroundColor = ConsoleColor.White;
             // this loop takes in all the items for the shopping list: 
             // if the user presses enter, then the loop will end.
@@ -29,7 +30,7 @@ namespace ShoppingList
                 shoppingList.Add(listItem);
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("Welcome To your shopping list. Type in the item name or press the 'Enter' key to finish");
+                Console.WriteLine("Type in the item name or press the 'Enter' key to finish");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
                 Console.WriteLine("My Shopping List:");
@@ -68,10 +69,10 @@ namespace ShoppingList
 
                     for (int i = 0; i < shoppingList.Count; i++)
                     {
-                        string j = shoppingList[i];
+                        string j = shoppingList[i];  // here I am cross referencing the var getRid against every index in the shopping list.
                         if(getRid == j)
                         {
-                            shoppingList.Remove(j);                             // i need the loop to check every item in the list before displaying invalid
+                            shoppingList.Remove(j);                             
 
                             Console.Clear();
                             Console.WriteLine("My updated Shopping List:");
@@ -91,7 +92,7 @@ namespace ShoppingList
                         {
                             Console.WriteLine();
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(getRid + " Is an invalid item name, please try again:");
+                            Console.WriteLine(getRid + " Is an invalid item name, please try again:");   // If the user types an incorrect name then this will display.
                             Console.ForegroundColor = ConsoleColor.White;
                             
                             
