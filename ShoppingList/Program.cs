@@ -71,7 +71,7 @@ namespace ShoppingList
                         string j = shoppingList[i];
                         if(getRid == j)
                         {
-                            shoppingList.Remove(j);                             // i need the loop to check every item in the list before displaying invalid
+                            shoppingList.Remove(j);                             
 
                             Console.Clear();
                             Console.WriteLine("My updated Shopping List:");
