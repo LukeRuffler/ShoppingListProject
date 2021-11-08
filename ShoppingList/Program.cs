@@ -7,13 +7,15 @@ namespace ShoppingList
     {
         static void Main(string[] args)
         {
+            var inputInstruction = "Type in the item name or press the 'Enter' key to finish";
+
             // the introduction to the application for the user
 
             var shoppingList = new List<string>();
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("Welcome To your shopping list.");
-            Console.WriteLine("Type in the item name or press the 'Enter' key to finish");
+            Console.WriteLine(inputInstruction);
             Console.ForegroundColor = ConsoleColor.White;
             // this loop takes in all the items for the shopping list: 
             // if the user presses enter, then the loop will end.
@@ -30,26 +32,14 @@ namespace ShoppingList
                 shoppingList.Add(listItem);
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("Type in the item name or press the 'Enter' key to finish");
+                Console.WriteLine(inputInstruction);
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine();
-                Console.WriteLine("My Shopping List:");
-                Console.WriteLine();
-                for (int i = 0; i < shoppingList.Count; i++)
-                {
-                    Console.WriteLine((i + 1) + ") " + shoppingList[i]);
-                }
+                PrintMyShoppingList(shoppingList);
             }
 
             // here the shopping list will be displayed back to the user.
 
-            Console.Clear();
-            Console.WriteLine("My Shopping List:");
-            Console.WriteLine();
-            for (int i = 0; i < shoppingList.Count; i++)
-            {
-                Console.WriteLine((i + 1) + ") " + shoppingList[i]);
-            }
+            PrintMyShoppingList(shoppingList);
 
             // in this loop the user has an opportunity to remove any items they wish from the shopping list. 
 
@@ -63,45 +53,31 @@ namespace ShoppingList
                 
                 if (answer.ToLower() == "y")
                 {
-                    Console.Write("Please name an item you wish to remove: ");
-                    var getRid = Console.ReadLine();                                   
+                    Console.Write("Please enter the number of an item you wish to remove: ");
+                    var itemToRemove = Convert.ToInt32(Console.ReadLine());                                   
                                                                                       
-
-                    for (int i = 0; i < shoppingList.Count; i++)
+                    if (itemToRemove > shoppingList.Count)
                     {
-                        string j = shoppingList[i];  // here I am cross referencing the var getRid against every index in the shopping list.
-                        if(getRid == j)
-                        {
-                            shoppingList.Remove(j);                             
-
-                            Console.Clear();
-                            Console.WriteLine("My updated Shopping List:");
-                            Console.WriteLine();
-                            for (int k = 0; k < shoppingList.Count; k++)
-                            {
-                                Console.WriteLine((k + 1) + ") " + shoppingList[k]);
-                            }
-                            continue;
-                            
-                        }
-                        else if (getRid != j && i < shoppingList.Count)
-                        {
-                            continue;
-                        }
-                        else if(getRid != j && i >= shoppingList.Count -1)
-                        {
-                            Console.WriteLine();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(getRid + " Is an invalid item name, please try again:");   // If the user types an incorrect name then this will display.
-                            Console.ForegroundColor = ConsoleColor.White;
-                            
-                            
-                        } 
-                      
+                        // Invalid option
                     }
+                    else
+                    {
+                        shoppingList.Remove(shoppingList[itemToRemove - 1]);
+
+                        Console.Clear();
+                        Console.WriteLine("My Shopping List:");
+                        Console.WriteLine();
+                        for (int i = 0; i < shoppingList.Count; i++)
+                        {
+                            Console.WriteLine((i + 1) + ") " + shoppingList[i]);
+                        }
+                    }
+                   
+                      
+                    
 
                 }
-                else if(answer.ToLower() == "n")
+                else if (answer.ToLower() == "n")
                 {
                     break;
                 }
@@ -115,6 +91,19 @@ namespace ShoppingList
            
 
             Console.ReadKey();
+        }
+
+        public static void PrintMyShoppingList(List<string> shoppingList)
+        {
+
+            Console.WriteLine();
+            Console.WriteLine("My Shopping List:");
+            Console.WriteLine();
+            for (int i = 0; i < shoppingList.Count; i++)
+            {
+               Console.WriteLine((i + 1) + ") " + shoppingList[i]);
+            }
+            
         }
 
         
