@@ -13,10 +13,11 @@ namespace ShoppingList
 
             var shoppingList = new List<string>();
 
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            ChangeToGreen();
             Console.WriteLine("Welcome To your shopping list.");
             Console.WriteLine(inputInstruction);
-            Console.ForegroundColor = ConsoleColor.White;
+            ChangeToWhite();
+
             // this loop takes in all the items for the shopping list: 
             // if the user presses enter, then the loop will end.
 
@@ -27,13 +28,14 @@ namespace ShoppingList
                 var listItem = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(listItem))
                 {
+                    Console.Clear();
                     break;
                 }
                 shoppingList.Add(listItem);
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                ChangeToGreen();
                 Console.WriteLine(inputInstruction);
-                Console.ForegroundColor = ConsoleColor.White;
+                ChangeToWhite();
                 PrintMyShoppingList(shoppingList);
             }
 
@@ -45,10 +47,10 @@ namespace ShoppingList
 
             while (true)
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                ChangeToGreen();
                 Console.WriteLine();
-                Console.WriteLine("Would you like to remove any items? (y/n)");    
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Would you like to remove any items? (y/n)");
+                ChangeToWhite();
                 string answer = Console.ReadLine();
                 
                 if (answer.ToLower() == "y")
@@ -65,17 +67,9 @@ namespace ShoppingList
                         shoppingList.Remove(shoppingList[itemToRemove - 1]);
 
                         Console.Clear();
-                        Console.WriteLine("My Shopping List:");
-                        Console.WriteLine();
-                        for (int i = 0; i < shoppingList.Count; i++)
-                        {
-                            Console.WriteLine((i + 1) + ") " + shoppingList[i]);
-                        }
+                        PrintMyShoppingList(shoppingList);
                     }
-                   
-                      
-                    
-
+            
                 }
                 else if (answer.ToLower() == "n")
                 {
@@ -105,7 +99,15 @@ namespace ShoppingList
             }
             
         }
+        public static void ChangeToGreen()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        }
+        public static void ChangeToWhite()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
 
-        
+        }
+
     }
 }
