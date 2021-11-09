@@ -55,12 +55,13 @@ namespace ShoppingList
                 
                 if (answer.ToLower() == "y")
                 {
-                    Console.Write("Please enter the number of an item you wish to remove: ");
+                    Console.Write("Please enter the number that correlates to the item you wish to remove: ");
                     var itemToRemove = Convert.ToInt32(Console.ReadLine());                                   
                                                                                       
                     if (itemToRemove > shoppingList.Count)
                     {
                         // Invalid option
+                        Console.WriteLine(itemToRemove + " is not a valid option");
                     }
                     else
                     {
